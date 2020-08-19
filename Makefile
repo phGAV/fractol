@@ -9,7 +9,7 @@ MLX_DIR := minilibx_macos
 BUILD := build
 INCLUDE := include
 
-SRC := main.c errors.c
+SRC := main.c errors.c mandelbrot.c event.c mouse.c
 OBJ := $(SRC:%.c=$(BUILD)/%.o)
 DEP := $(OBJ:%.o=%.d)
 
@@ -60,8 +60,8 @@ fclean: clean
 
 re: fclean all
 
-# test: all
-# 	@./fdf test_maps/42.fdf
+test: all
+	@./fractol Mandelbrot
 
 love:
 	@echo 'not war'

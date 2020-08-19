@@ -13,7 +13,7 @@
 #ifndef KEY_H
 # define KEY_H
 
-# include "fdf.h"
+# include "fractol.h"
 
 # define KEYBOARD_MAX 127
 
@@ -63,22 +63,22 @@
 # define MOTION_NOTIFY		06
 # define DESTROY_NOTIFY		17
 
-typedef void	(*t_shortcut)(t_fdf *, int);
+typedef void	(*t_shortcut)(t_fractal *, int);
 
-void	move_side(t_fdf *fdf, int keycode);
-void	move_up(t_fdf *fdf, int keycode);
-void	change_angle_x(t_fdf *fdf, int keycode);
-void	change_angle_y(t_fdf *fdf, int keycode);
-void	change_angle_z(t_fdf *fdf, int keycode);
-void	change_projection(t_fdf *fdf, int keycode);
-void	change_colors(t_fdf *fdf, int keycode);
-void	change_blur(t_fdf *fdf, int keycode);
-void	flatten(t_fdf *fdf, int keycode);
+// void	move_side(t_fdf *fdf, int keycode);
+// void	move_up(t_fdf *fdf, int keycode);
+// void	change_angle_x(t_fdf *fdf, int keycode);
+// void	change_angle_y(t_fdf *fdf, int keycode);
+// void	change_angle_z(t_fdf *fdf, int keycode);
+// void	change_projection(t_fdf *fdf, int keycode);
+// void	change_colors(t_fdf *fdf, int keycode);
+// void	change_blur(t_fdf *fdf, int keycode);
+// void	flatten(t_fdf *fdf, int keycode);
 
-int		mouse_pressed(int button, int x, int y, t_fdf *fdf);
-int		mouse_released(int button, int x, int y, t_fdf *fdf);
-int		mouse_move(int x, int y, t_fdf *fdf);
+int		mouse_pressed(int button, int x, int y, t_fractal *fr);
+int		mouse_released(int button, int x, int y, t_fractal *fr);
+int		mouse_move(int x, int y, t_fractal *fr);
 
-int		close_hook(t_fdf *fdf, int keycode);
+int		close_hook(t_fractal *fr, int keycode);
 
 #endif
