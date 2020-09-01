@@ -24,11 +24,11 @@ static void		choose_type(char *name, t_fractal *fractal)
 
 void			fractal_init(char *name, t_fractal *fractal)
 {
-	/* x_min x_max y_min y_max */
+	/* x_min x_max y_min y_max max_iter */
 	t_param			param[3] = {
-		{-2.5, 1.0, -1.5, 1.5, &count_mandelbrot},
-		{-2.5, 1.5, -2.0, 2.0, &count_mandelbrot},
-		{-2.5, 1.5, -2.0, 2.0, &count_mandelbrot},
+		{-2.5, 1.0, -1.5, 1.5, EXIT_TIME, &count_mandelbrot},
+		{-2.5, 1.5, -2.0, 2.0, EXIT_TIME, &count_mandelbrot},
+		{-2.5, 1.5, -2.0, 2.0, EXIT_TIME, &count_mandelbrot},
 	};
 
 	fractal->line_size = WIN_WIDTH;

@@ -25,7 +25,7 @@
 # define WHITE		0x00FFFFFF
 # define BLACK		0x00000000
 
-# define EXIT_TIME	1500
+# define EXIT_TIME	450
 
 typedef struct {
 	bool			hold;
@@ -51,7 +51,8 @@ typedef struct	s_param {
 	float		x_max;
 	float		y_min;
 	float		y_max;
-	int		(*func)(t_complex);
+	int			max_iter;
+	int			(*func)(t_complex, int);
 }				t_param;
 
 typedef struct		s_fractal {
@@ -72,6 +73,6 @@ typedef struct		s_fractal {
 void	exit_err(char *err_msg);
 void	draw(t_fractal *fr);
 void	events_control(t_fractal *fr);
-int		count_mandelbrot(t_complex c);
+int		count_mandelbrot(t_complex c, int max_iter);
 
 #endif

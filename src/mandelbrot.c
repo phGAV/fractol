@@ -19,7 +19,7 @@ static void		put_pixel(t_fractal *fr, int x, int y, int color)
 		fr->img_ptr[y * WIN_WIDTH + x] = color;
 }
 
-int		count_mandelbrot(t_complex c)
+int		count_mandelbrot(t_complex c, int max_iter)
 {
 	int			n;
 	t_complex	z;
@@ -28,7 +28,7 @@ int		count_mandelbrot(t_complex c)
 	n = 0;
 	z.re = 0;
 	z.im = 0;
-	while (n < EXIT_TIME)
+	while (n < max_iter)
 	{
 		if (((z.im*z.im) + (z.re*z.re)) > 4)
 			return (n);
@@ -53,6 +53,20 @@ t_complex	get_complex(int x, int y, t_param *fr)
 	return (z);
 }
 
+int		color_bernstein(int iter, t_param *fr)
+{
+	float	t;
+	int		r;
+	int		g;
+	int		b;
+
+	t = (float)iter/(float)fr->max_iter;
+	r = (int)(9.0 * (1 - t) * t * t * t * 255.0);
+	g = (int)(15.0 * (1 - t) * (1 - t) * t * t * 255.0);
+	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255.0);
+	return ((r << 0x10) | (g << 0x8) | b);
+}
+
 void	draw(t_fractal *fr)
 {
 	int	x;
@@ -66,13 +80,11 @@ void	draw(t_fractal *fr)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			if ((n = fr->param.func(get_complex(x, y, &fr->param))) == EXIT_TIME)
-				// put_pixel(fr, x, y, WHITE);
+			if ((n = fr->param.func(get_complex(x, y, &fr->param), fr->param.max_iter))
+					== fr->param.max_iter)
 				put_pixel(fr, x, y, BLACK);
 			else
-				// put_pixel(fr, x, y, (n % EXIT_TIME)*n);
-				put_pixel(fr, x, y, log(EXIT_TIME / n)*n);
-				// put_pixel(fr, x, y, BLACK);
+				put_pixel(fr, x, y, color_bernstein(n, &fr->param));
 			x++;
 		}
 		y++;

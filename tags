@@ -118,9 +118,10 @@ choose_type	src/main.c	/^static void		choose_type(char *name, t_fractal *fractal
 close_hook	src/event.c	/^int		close_hook(t_fractal *fr, int keycode)$/;"	f
 col	minilibx_macos/mlx_xpm.c	/^  int           col;$/;"	m	struct:s_xpm_col	file:
 color	minilibx_macos/mlx_xpm.c	/^  int   color;$/;"	m	struct:s_col_name	file:
+color_bernstein	src/mandelbrot.c	/^int		color_bernstein(int iter, t_param *fr)$/;"	f
 content	libft/include/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content_size	libft/include/libft.h	/^	size_t			content_size;$/;"	m	struct:s_list
-count_mandelbrot	src/mandelbrot.c	/^int		count_mandelbrot(t_complex c)$/;"	f
+count_mandelbrot	src/mandelbrot.c	/^int		count_mandelbrot(t_complex c, int max_iter)$/;"	f
 ctor	libft/include/vec.h	/^	void	(*ctor)(void *, const void *);$/;"	m	struct:__anon2
 data	libft/include/vec.h	/^	void	*data;$/;"	m	struct:__anon2
 display_log	minilibx_macos/mlx_shaders.c	/^void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())$/;"	f
@@ -219,7 +220,7 @@ ft_tolower	libft/src/core/ft_tolower.c	/^int		ft_tolower(int c)$/;"	f
 ft_toupper	libft/src/core/ft_toupper.c	/^int		ft_toupper(int c)$/;"	f
 ft_umax	libft/src/core/ft_umax.c	/^uintmax_t	ft_umax(uintmax_t a, uintmax_t b)$/;"	f
 ft_umin	libft/src/core/ft_umin.c	/^uintmax_t	ft_umin(uintmax_t a, uintmax_t b)$/;"	f
-func	include/fractol.h	/^	int		(*func)(t_complex);$/;"	m	struct:s_param
+func	include/fractol.h	/^	int			(*func)(t_complex, int);$/;"	m	struct:s_param
 func_t	minilibx_macos/mlx_int.h	/^typedef int (*func_t)();$/;"	t
 g_seed	libft/src/core/ft_rand.c	/^static unsigned g_seed;$/;"	v	file:
 get_complex	src/mandelbrot.c	/^t_complex	get_complex(int x, int y, t_param *fr)$/;"	f
@@ -265,6 +266,7 @@ loop_hook_data	minilibx_macos/mlx_int.h	/^  void			*loop_hook_data;$/;"	m	struct
 loop_timer	minilibx_macos/mlx_int.h	/^  void			*loop_timer;$/;"	m	struct:mlx_ptr_s
 main	src/main.c	/^int				main(int argc, char **argv)$/;"	f
 main_loop_active	minilibx_macos/mlx_int.h	/^  int			main_loop_active;$/;"	m	struct:mlx_ptr_s
+max_iter	include/fractol.h	/^	int			max_iter;$/;"	m	struct:s_param
 max_size	libft/include/vec.h	/^	ssize_t	max_size;$/;"	m	struct:__anon2
 mlx	include/fractol.h	/^	void			*mlx;$/;"	m	struct:s_fractal
 mlx_col_name	minilibx_macos/mlx_rgb.c	/^struct s_col_name mlx_col_name[] =$/;"	v	typeref:struct:s_col_name
