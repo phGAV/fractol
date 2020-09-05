@@ -22,9 +22,9 @@
 # define WIN_HEIGHT	900
 # define WIN_WIDTH	1050
 
-# define WHITE		0x00FFFFFF
 # define BLACK		0x00000000
 
+# define THREADS	16
 # define EXIT_TIME	450
 
 typedef struct {
@@ -67,11 +67,12 @@ typedef struct		s_fractal {
 	int				line_size;
 	int				endian;
 	t_param			param;
+	int				thread_id;
 	t_type			name;
 }					t_fractal;
 
 void	exit_err(char *err_msg);
-void	draw(t_fractal *fr);
+void	thread_init(t_fractal *fr);
 void	events_control(t_fractal *fr);
 int		count_mandelbrot(t_complex c, int max_iter);
 

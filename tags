@@ -28,6 +28,7 @@ DEP	libft/Makefile	/^DEP := $(OBJ:%.o=%.d)$/;"	m
 DESTROY_NOTIFY	include/key.h	/^# define DESTROY_NOTIFY	/;"	d
 ENOINDEX	libft/include/vec.h	/^# define ENOINDEX /;"	d
 ERRORS_H	include/errors.h	/^# define ERRORS_H$/;"	d
+ERR_THREADS	include/errors.h	/^# define ERR_THREADS	/;"	d
 ESC	include/key.h	/^# define ESC	/;"	d
 EXIT_TIME	include/fractol.h	/^# define EXIT_TIME	/;"	d
 FONT_HEIGHT	minilibx_macos/mlx_int.h	/^#define	FONT_HEIGHT	/;"	d
@@ -102,12 +103,13 @@ RE_STDHEADER	libft/util/dumbsplit.py	/^RE_STDHEADER = re.compile(r'(?:^\/\\*.{76
 SRC	Makefile	/^SRC := main.c errors.c mandelbrot.c event.c mouse.c$/;"	m
 SRC	libft/Makefile	/^SRC := core\/ft_apply.c core\/ft_atoi.c core\/ft_bzero.c core\/ft_calloc.c core\/ft_foreach.c core\/ft_isalnum.c core\/ft_isalpha.c core\/ft_isascii.c core\/ft_isdigit.c core\/ft_islower.c core\/ft_isprint.c core\/ft_isspace.c core\/ft_isupper.c core\/ft_itoa.c core\/ft_lstadd.c core\/ft_lstdel.c core\/ft_lstdelone.c core\/ft_lstiter.c core\/ft_lstmap.c core\/ft_lstnew.c core\/ft_malloc.c core\/ft_map.c core\/ft_memalloc.c core\/ft_memccpy.c core\/ft_memchr.c core\/ft_memcmp.c core\/ft_memcpy.c core\/ft_memdel.c core\/ft_memdup.c core\/ft_memmove.c core\/ft_memset.c core\/ft_memswap.c core\/ft_putchar.c core\/ft_putchar_fd.c core\/ft_putendl.c core\/ft_putendl_fd.c core\/ft_putnbr.c core\/ft_putnbr_fd.c core\/ft_putstr.c core\/ft_putstr_fd.c core\/ft_qsort.c core\/ft_rand.c core\/ft_realloc.c core\/ft_strcat.c core\/ft_strchr.c core\/ft_strclr.c core\/ft_strcmp.c core\/ft_strcpy.c core\/ft_strdel.c core\/ft_strdup.c core\/ft_strelems.c core\/ft_strequ.c core\/ft_striter.c core\/ft_striteri.c core\/ft_strjmp.c core\/ft_strjoin.c core\/ft_strlcat.c core\/ft_strlen.c core\/ft_strmap.c core\/ft_strmapi.c core\/ft_strncat.c core\/ft_strncmp.c core\/ft_strncpy.c core\/ft_strnequ.c core\/ft_strnew.c core\/ft_strnstr.c core\/ft_strrchr.c core\/ft_strsplit.c core\/ft_strspn.c core\/ft_strstr.c core\/ft_strsub.c core\/ft_strtrim.c core\/ft_tolower.c core\/ft_toupper.c core\/ft_umax.c core\/ft_umin.c core\/get_next_line.c vec\/vec_append.c vec\/vec_apply.c vec\/vec_bsearch.c vec\/vec_clear.c vec\/vec_clone.c vec\/vec_copy.c vec\/vec_count.c vec\/vec_create.c vec\/vec_extend.c vec\/vec_filter.c vec\/vec_free.c vec\/vec_get.c vec\/vec_import.c vec\/vec_index.c vec\/vec_insert.c vec\/vec_map.c vec\/vec_pop.c vec\/vec_remove.c vec\/vec_resize.c vec\/vec_reverse.c vec\/vec_search.c vec\/vec_set.c vec\/vec_sort.c vec\/vectorize.c $/;"	m
 SRC	minilibx_macos/Makefile	/^SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c$/;"	m
+THREADS	include/fractol.h	/^# define THREADS	/;"	d
+THREAD_FLAGS	Makefile	/^THREAD_FLAGS := -lpthread$/;"	m
 UNIQ_BPP	minilibx_macos/mlx_int.h	/^#define UNIQ_BPP	/;"	d
 USAGE	include/errors.h	/^# define USAGE	/;"	d
 VEC_H	libft/include/vec.h	/^# define VEC_H$/;"	d
 WFLAGS	Makefile	/^WFLAGS := -Wall -Wextra$/;"	m
 WFLAGS	libft/Makefile	/^WFLAGS := -Wall -Wextra$/;"	m
-WHITE	include/fractol.h	/^# define WHITE	/;"	d
 WIN_HEIGHT	include/fractol.h	/^# define WIN_HEIGHT	/;"	d
 WIN_WIDTH	include/fractol.h	/^# define WIN_WIDTH	/;"	d
 appid	minilibx_macos/mlx_int.h	/^  void			*appid;$/;"	m	struct:mlx_ptr_s
@@ -125,7 +127,7 @@ count_mandelbrot	src/mandelbrot.c	/^int		count_mandelbrot(t_complex c, int max_i
 ctor	libft/include/vec.h	/^	void	(*ctor)(void *, const void *);$/;"	m	struct:__anon2
 data	libft/include/vec.h	/^	void	*data;$/;"	m	struct:__anon2
 display_log	minilibx_macos/mlx_shaders.c	/^void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())$/;"	f
-draw	src/mandelbrot.c	/^void	draw(t_fractal *fr)$/;"	f
+draw_thread	src/mandelbrot.c	/^void	draw_thread(void *fractal)$/;"	f
 dtor	libft/include/vec.h	/^	void	(*dtor)(void *);$/;"	m	struct:__anon2
 dumbsplit	libft/util/dumbsplit.py	/^def dumbsplit(source):$/;"	f
 endian	include/fractol.h	/^	int				endian;$/;"	m	struct:s_fractal
@@ -341,6 +343,8 @@ t_vec	libft/include/vec.h	/^}	t_vec;$/;"	t	typeref:struct:__anon2
 t_xpm_col	minilibx_macos/mlx_xpm.c	/^} t_xpm_col;$/;"	t	typeref:struct:s_xpm_col	file:
 tail_to_line	libft/src/core/get_next_line.c	/^int		tail_to_line(char **tail, char **line)$/;"	f
 texture	minilibx_macos/mlx_int.h	/^  GLuint		texture;$/;"	m	struct:mlx_img_ctx_s
+thread_id	include/fractol.h	/^	int				thread_id;$/;"	m	struct:s_fractal
+thread_init	src/mandelbrot.c	/^void	thread_init(t_fractal *fr)$/;"	f
 vbuffer	minilibx_macos/mlx_int.h	/^  GLuint		vbuffer;$/;"	m	struct:mlx_img_ctx_s
 vec_append	libft/src/vec/vec_append.c	/^void	*vec_append(t_vec *v, const void *object)$/;"	f
 vec_apply	libft/src/vec/vec_apply.c	/^void	vec_apply(t_vec *v, void (*f)(void *))$/;"	f

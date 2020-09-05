@@ -49,7 +49,8 @@ int		mouse_pressed(int button, int x, int y, t_fractal *fr)
 	else if (button == MOUSE_SCROLL_UP)
 	{
 		zoom_in(&fr->param, (float)x, (float)y);
-		draw(fr);
+		thread_init(fr);
+		// draw(fr);
 	}
 	// else if (button == MOUSE_SCROLL_DOWN)
 	// 	fr->camera->zoom > MIN_ZOOM ? fr->camera->zoom-- : MIN_ZOOM;

@@ -52,7 +52,8 @@ int				main(int argc, char **argv)
 	choose_type(argv[1], &fractal);
 	fractal_init(argv[1], &fractal);
 	// if (fractal.name == MANDELBROT)
-	draw(&fractal);
+	// draw(&fractal);
+	thread_init(&fractal);
 	events_control(&fractal);
 	mlx_loop(fractal.mlx);
 	return (EXIT_SUCCESS);

@@ -21,6 +21,7 @@ RANLIB := ranlib
 
 CC := clang
 WFLAGS := -Wall -Wextra
+THREAD_FLAGS := -lpthread
 # WFLAGS += -Wpedantic
 # WFLAGS += -Werror
 OFLAGS := -O2 -march=native
@@ -38,7 +39,7 @@ $(NAME): $(OBJ)
 	@echo "Linking '$@'..."
 	@$(MAKE) -C $(MLX_DIR) all
 	@$(MAKE) -C $(LIBFT_DIR) all
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(LIBFT_LIB) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(THREAD_FLAGS) $(LIBFT_LIB) $(OBJ) -o $(NAME)
 	@echo "\x1b[32;1m[$(NAME)] Done\x1b[0m"
 
 -include $(DEP)
