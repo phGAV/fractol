@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/05 23:29:06 by diona             #+#    #+#             */
-/*   Updated: 2020/08/05 23:29:06 by diona            ###   ########.fr       */
+/*   Created: 2020/09/05 22:49:21 by diona             #+#    #+#             */
+/*   Updated: 2020/09/05 22:49:21 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 #include <pthread.h>
 
 static void		put_pixel(t_fractal *fr, int x, int y, int color)
@@ -20,32 +19,11 @@ static void		put_pixel(t_fractal *fr, int x, int y, int color)
 		fr->img_ptr[y * WIN_WIDTH + x] = color;
 }
 
-int		count_mandelbrot(t_complex c, int max_iter)
-{
-	int			n;
-	t_complex	z;
-	float		temp;
-
-	n = 0;
-	z.re = 0;
-	z.im = 0;
-	while (n < max_iter)
-	{
-		if (((z.im*z.im) + (z.re*z.re)) > 4)
-			return (n);
-		temp = z.re*z.re - z.im*z.im + c.re;
-		z.im = 2*z.re*z.im + c.im;
-		z.re = temp;
-		n++;
-	}
-	return (n);
-}
-
 t_complex	get_complex(int x, int y, t_param *fr)
 {
 	t_complex	z;
-	float dx;
-	float dy;
+	double		dx;
+	double		dy;
 
 	dx = (fr->x_max - fr->x_min) / WIN_WIDTH;
 	dy = (fr->y_max - fr->y_min) / WIN_HEIGHT;
@@ -56,12 +34,12 @@ t_complex	get_complex(int x, int y, t_param *fr)
 
 int		color_bernstein(int iter, t_param *fr)
 {
-	float	t;
+	double	t;
 	int		r;
 	int		g;
 	int		b;
 
-	t = (float)iter/(float)fr->max_iter;
+	t = (double)iter/(double)fr->max_iter;
 	r = (int)(9.0 * (1 - t) * t * t * t * 255.0);
 	g = (int)(15.0 * (1 - t) * (1 - t) * t * t * 255.0);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255.0);
@@ -85,8 +63,9 @@ void	draw_thread(void *fractal)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			if ((n = fr->param.func(get_complex(x, y, &fr->param), fr->param.max_iter))
-					== fr->param.max_iter)
+			if ((n = fr->param.func(get_complex(x, y, &fr->param),
+							get_complex(fr->mouse->x, fr->mouse->y, &fr->param),
+							fr->param.max_iter)) == fr->param.max_iter)
 				put_pixel(fr, x, y, BLACK);
 			else
 				put_pixel(fr, x, y, color_bernstein(n, &fr->param));

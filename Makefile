@@ -9,7 +9,7 @@ MLX_DIR := minilibx_macos
 BUILD := build
 INCLUDE := include
 
-SRC := main.c errors.c mandelbrot.c event.c mouse.c
+SRC := main.c errors.c fractal.c event.c mouse.c draw.c
 OBJ := $(SRC:%.c=$(BUILD)/%.o)
 DEP := $(OBJ:%.o=%.d)
 

@@ -1,0 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractal.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/05 22:48:57 by diona             #+#    #+#             */
+/*   Updated: 2020/09/05 22:48:57 by diona            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fractol.h"
+
+int		mandelbrot(t_complex c, t_complex m, int max_iter)
+{
+	int			n;
+	t_complex	z;
+	double		temp;
+
+	(void)m;
+	n = 0;
+	z.re = 0;
+	z.im = 0;
+	while (n < max_iter)
+	{
+		if (((z.im*z.im) + (z.re*z.re)) > 4)
+			return (n);
+		temp = z.re*z.re - z.im*z.im + c.re;
+		z.im = 2*z.re*z.im + c.im;
+		z.re = temp;
+		n++;
+	}
+	return (n);
+}
+
+int		julia(t_complex c, t_complex m, int max_iter)
+{
+	int			n;
+	t_complex	z;
+	double		temp;
+
+	n = 0;
+	z.re = c.re;
+	z.im = c.im;
+	while (n < max_iter)
+	{
+		if (((z.im*z.im) + (z.re*z.re)) > 4)
+			return (n);
+		temp = z.re*z.re - z.im*z.im + m.re;
+		z.im = 2*z.re*z.im + m.im;
+		z.re = temp;
+		n++;
+	}
+	return (n);
+}
+
+int		burning_ship(t_complex c, t_complex m, int max_iter)
+{
+	int			n;
+	t_complex	z;
+	double		temp;
+
+	(void)m;
+	n = 0;
+	z.re = 0;
+	z.im = 0;
+	while (n < max_iter)
+	{
+		if (((z.im*z.im) + (z.re*z.re)) > 4)
+			return (n);
+		temp = z.re*z.re - z.im*z.im + c.re;
+		z.im = -fabs(2*z.re*z.im) + c.im;
+		z.re = temp;
+		n++;
+	}
+	return (n);
+}
+
+int		mandelbar(t_complex c, t_complex m, int max_iter)
+{
+	int			n;
+	t_complex	z;
+	double		temp;
+
+	(void)m;
+	n = 0;
+	z.re = 0;
+	z.im = 0;
+	while (n < max_iter)
+	{
+		if (((z.im*z.im) + (z.re*z.re)) > 4)
+			return (n);
+		temp = z.re*z.re - z.im*z.im + c.re;
+		z.im = -2*z.re*z.im + c.im;
+		z.re = temp;
+		n++;
+	}
+	return (n);
+}

@@ -40,19 +40,19 @@
 # define ARROW_RIGHT		124
 
 # define C					8
-# define I					34
-# define M					46
-# define P					35
-# define KEY_0				29
-# define KEY_1				18
-# define KEY_2				19
-# define KEY_3				20
-# define KEY_4				21
-# define KEY_5				23
-# define KEY_6				22
-# define KEY_7				26
-# define KEY_8				28
-# define KEY_9				25
+# define R					15
+# define F					3
+# define H					4
+// # define KEY_0				29
+// # define KEY_1				18
+// # define KEY_2				19
+// # define KEY_3				20
+// # define KEY_4				21
+// # define KEY_5				23
+// # define KEY_6				22
+// # define KEY_7				26
+// # define KEY_8				28
+// # define KEY_9				25
 # define PLUS				24
 # define MINUS				27
 
@@ -64,16 +64,6 @@
 # define DESTROY_NOTIFY		17
 
 typedef void	(*t_shortcut)(t_fractal *, int);
-
-// void	move_side(t_fdf *fdf, int keycode);
-// void	move_up(t_fdf *fdf, int keycode);
-// void	change_angle_x(t_fdf *fdf, int keycode);
-// void	change_angle_y(t_fdf *fdf, int keycode);
-// void	change_angle_z(t_fdf *fdf, int keycode);
-// void	change_projection(t_fdf *fdf, int keycode);
-// void	change_colors(t_fdf *fdf, int keycode);
-// void	change_blur(t_fdf *fdf, int keycode);
-// void	flatten(t_fdf *fdf, int keycode);
 
 int		mouse_pressed(int button, int x, int y, t_fractal *fr);
 int		mouse_released(int button, int x, int y, t_fractal *fr);

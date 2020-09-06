@@ -18,17 +18,25 @@ static void		choose_type(char *name, t_fractal *fractal)
 		fractal->name = MANDELBROT;
 	else if (!ft_strcmp("Julia", name))
 		fractal->name = JULIA;
+	else if (!ft_strcmp("Burning ship", name))
+		fractal->name = BURN_SHIP;
+	else if (!ft_strcmp("Mandelbar", name))
+		fractal->name = MANDELBAR;
 	else
 		exit_err(USAGE);
 }
 
+/*
+ *	x_min	x_max	y_min	y_max	max_iter	func_ptr
+ */
+
 void			fractal_init(char *name, t_fractal *fractal)
 {
-	/* x_min x_max y_min y_max max_iter */
-	t_param			param[3] = {
-		{-2.5, 1.0, -1.5, 1.5, EXIT_TIME, &count_mandelbrot},
-		{-2.5, 1.5, -2.0, 2.0, EXIT_TIME, &count_mandelbrot},
-		{-2.5, 1.5, -2.0, 2.0, EXIT_TIME, &count_mandelbrot},
+	t_param			param[4] = {
+		{-2.5, 1.0, -1.5, 1.5, EXIT_TIME, &mandelbrot},
+		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &julia},
+		{-2.0, 1.5, -1.0, 2.0, EXIT_TIME, &burning_ship},
+		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &mandelbar},
 	};
 
 	fractal->line_size = WIN_WIDTH;
@@ -51,8 +59,6 @@ int				main(int argc, char **argv)
 		exit_err(USAGE);
 	choose_type(argv[1], &fractal);
 	fractal_init(argv[1], &fractal);
-	// if (fractal.name == MANDELBROT)
-	// draw(&fractal);
 	thread_init(&fractal);
 	events_control(&fractal);
 	mlx_loop(fractal.mlx);

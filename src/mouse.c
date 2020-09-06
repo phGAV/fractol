@@ -13,18 +13,17 @@
 #include "fractol.h"
 #include "key.h"
 
-float interpolate(float start, float end, float interpolation)
+double interpolate(double start, double end, double interpolation)
 {
     return start + ((end - start) * interpolation);
 }
 
-void	zoom_in(t_param *param, float x, float y)
+void	zoom(t_param *param, double x, double y, double factor)
 {
-	float factor = 1.05;
 	t_complex	m;
-	float dx;
-	float dy;
-	float interpolation;
+	double		dx;
+	double		dy;
+	double		interpolation;
 
 	dx = (param->x_max - param->x_min) / WIN_WIDTH;
 	dy = (param->y_max - param->y_min) / WIN_HEIGHT;
@@ -48,12 +47,14 @@ int		mouse_pressed(int button, int x, int y, t_fractal *fr)
 		fr->mouse->hold_rmb = true;
 	else if (button == MOUSE_SCROLL_UP)
 	{
-		zoom_in(&fr->param, (float)x, (float)y);
+		zoom(&fr->param, (double)x, (double)y, 1.05);
 		thread_init(fr);
-		// draw(fr);
 	}
-	// else if (button == MOUSE_SCROLL_DOWN)
-	// 	fr->camera->zoom > MIN_ZOOM ? fr->camera->zoom-- : MIN_ZOOM;
+	else if (button == MOUSE_SCROLL_DOWN)
+	{
+		zoom(&fr->param, (double)x, (double)y, 0.95);
+		thread_init(fr);
+	}
 	return (0);
 }
 
@@ -69,19 +70,13 @@ int		mouse_released(int button, int x, int y, t_fractal *fr)
 
 int		mouse_move(int x, int y, t_fractal *fr)
 {
-	fr->mouse->prev_x = fr->mouse->x;
-	fr->mouse->prev_y = fr->mouse->y;
-	fr->mouse->x = x;
-	fr->mouse->y = y;
-	if (fr->mouse->hold_rmb)
+	// fr->mouse->prev_x = fr->mouse->x;
+	// fr->mouse->prev_y = fr->mouse->y;
+	if (fr->name == JULIA)
 	{
-		// fr->camera->angle_x -= (y - fdf->mouse->prev_y) * ANGLE_STEP;
-		// fr->camera->angle_z -= (x - fdf->mouse->prev_x) * ANGLE_STEP;
-	}
-	else if (fr->mouse->hold)
-	{
-		// fdf->camera->offset_y -= fdf->mouse->prev_y - y;
-		// fdf->camera->offset_x -= fdf->mouse->prev_x - x;
+		fr->mouse->x = x;
+		fr->mouse->y = y;
+		thread_init(fr);
 	}
 	return (0);
 }

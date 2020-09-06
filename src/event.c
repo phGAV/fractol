@@ -22,6 +22,22 @@ int		close_hook(t_fractal *fr, int keycode)
 	exit(EXIT_SUCCESS);
 }
 
+// int		move_up(t_fractal *fr, int keycode)
+// {
+
+// }
+
+// int		move_side(t_fractal *fr, int keycode)
+// {
+
+// }
+
+// int		modify_iter(t_fractal *fr, int keycode)
+// {
+// 	if ()
+// 	else
+// }
+
 int		key_hook(int keycode, t_fractal *fr)
 {
 	static const t_shortcut	g_key[KEYBOARD_MAX] = {
@@ -30,18 +46,11 @@ int		key_hook(int keycode, t_fractal *fr)
 		// [ARROW_DOWN] = move_up,
 		// [ARROW_LEFT] = move_side,
 		// [ARROW_RIGHT] = move_side,
-		// [PLUS] = flatten,
-		// [MINUS] = flatten,
-		// [KEY_1] = change_angle_x,
-		// [KEY_2] = change_angle_x,
-		// [KEY_3] = change_angle_y,
-		// [KEY_4] = change_angle_y,
-		// [KEY_5] = change_angle_z,
-		// [KEY_6] = change_angle_z,
+		// [PLUS] = modify_iter,
+		// [MINUS] = modify_iter,
 		// [C] = change_colors,
-		// [M] = change_blur,
-		// [I] = change_projection,
-		// [P] = change_projection
+		// [F] = fix_julia,
+		// [R] = reset,
 	};
 
 	if (keycode <= KEYBOARD_MAX && g_key[keycode])
