@@ -23,9 +23,11 @@
 # define WIN_WIDTH	1050
 
 # define BLACK		0x00000000
+# define SATURATION	70.0
+# define VALUE		70.0
 
 # define THREADS	16
-# define EXIT_TIME	450
+# define EXIT_TIME	150
 
 typedef struct {
 	bool			hold;
@@ -42,10 +44,12 @@ typedef struct		s_complex {
 }					t_complex;
 
 typedef enum		s_type {
-	MANDELBROT,
+	MANDELBROT = 0,
 	JULIA,
 	BURN_SHIP,
-	MANDELBAR
+	MANDELBAR,
+	PHOENIX,
+	OCEAN
 }					t_type;
 
 typedef struct	s_param {
@@ -80,5 +84,7 @@ int		mandelbrot(t_complex c, t_complex m, int max_iter);
 int		julia(t_complex c, t_complex m, int max_iter);
 int		burning_ship(t_complex c, t_complex m, int max_iter);
 int		mandelbar(t_complex c, t_complex m, int max_iter);
+int		phoenix(t_complex c, t_complex m, int max_iter);
+int		ocean(t_complex c, t_complex m, int max_iter);
 
 #endif

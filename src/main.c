@@ -22,6 +22,10 @@ static void		choose_type(char *name, t_fractal *fractal)
 		fractal->name = BURN_SHIP;
 	else if (!ft_strcmp("Mandelbar", name))
 		fractal->name = MANDELBAR;
+	else if (!ft_strcmp("Phoenix", name))
+		fractal->name = PHOENIX;
+	else if (!ft_strcmp("Ocean", name))
+		fractal->name = OCEAN;
 	else
 		exit_err(USAGE);
 }
@@ -32,11 +36,13 @@ static void		choose_type(char *name, t_fractal *fractal)
 
 void			fractal_init(char *name, t_fractal *fractal)
 {
-	t_param			param[4] = {
+	t_param			param[6] = {
 		{-2.5, 1.0, -1.5, 1.5, EXIT_TIME, &mandelbrot},
 		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &julia},
 		{-2.0, 1.5, -1.0, 2.0, EXIT_TIME, &burning_ship},
 		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &mandelbar},
+		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &phoenix},
+		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &ocean},
 	};
 
 	fractal->line_size = WIN_WIDTH;

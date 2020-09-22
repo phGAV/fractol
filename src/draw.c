@@ -46,6 +46,45 @@ int		color_bernstein(int iter, t_param *fr)
 	return ((r << 0x10) | (g << 0x8) | b);
 }
 
+int		color_grayscale(int iter, t_param *fr)
+{
+	double	t;
+	int		r;
+	int		g;
+	int		b;
+
+	t = (double)iter/(double)fr->max_iter;
+	r = (int)((1 - t)*0.0 + t*255.0);
+	g = (int)((1 - t)*0.0 + t*255.0);
+	b = (int)((1 - t)*0.0 + t*255.0);
+	return ((r << 0x10) | (g << 0x8) | b);
+}
+
+int		color_hsv(int iter, t_param *fr)
+{
+	double		h;
+	int		i;
+	double		vm, a, vi, vd;
+
+	h = (360.0*(double)iter/(double)fr->max_iter);
+	i = ((int)h/60)%6;
+	vm = ((100 - SATURATION) * VALUE)/100;
+	a = (VALUE - vm) * (fmod(h, 60)/60);
+	vi = vm + a;
+	vd = VALUE - a;
+	if (i < 1)
+		return (((int)(VALUE*2.55) << 0x10) | ((int)(vi*2.55) << 0x8) | (int)(vm*2.55));
+	if (i < 2)
+		return (((int)(vd*2.55) << 0x10) | ((int)(VALUE*2.55) << 0x8) | (int)(vm*2.55));
+	if (i < 3)
+		return (((int)(vm*2.55) << 0x10) | ((int)(VALUE*2.55) << 0x8) | (int)(vi*2.55));
+	if (i < 4)
+		return (((int)(vm*2.55) << 0x10) | ((int)(vd*2.55) << 0x8) | (int)(VALUE*2.55));
+	if (i < 5)
+		return (((int)(vi*2.55) << 0x10) | ((int)(vm*2.55) << 0x8) | (int)(VALUE*2.55));
+	return (((int)(VALUE*2.55) << 0x10) | ((int)(vm*2.55) << 0x8) | (int)(vd*2.55));
+}
+
 void	draw_thread(void *fractal)
 {
 	int	x;
@@ -68,7 +107,8 @@ void	draw_thread(void *fractal)
 							fr->param.max_iter)) == fr->param.max_iter)
 				put_pixel(fr, x, y, BLACK);
 			else
-				put_pixel(fr, x, y, color_bernstein(n, &fr->param));
+				// put_pixel(fr, x, y, color_bernstein(n, &fr->param));
+				put_pixel(fr, x, y, color_hsv(n, &fr->param));
 			x++;
 		}
 		y++;

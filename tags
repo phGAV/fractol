@@ -50,8 +50,8 @@ LIBFT_DIR	Makefile	/^LIBFT_DIR := libft$/;"	m
 LIBFT_H	libft/include/libft.h	/^# define LIBFT_H$/;"	d
 LIBFT_INCLUDE	Makefile	/^LIBFT_INCLUDE := $(LIBFT_DIR)\/include$/;"	m
 LIBFT_LIB	Makefile	/^LIBFT_LIB := $(LIBFT_DIR)\/libft.a$/;"	m
-MANDELBAR	include/fractol.h	/^	MANDELBAR$/;"	e	enum:s_type
-MANDELBROT	include/fractol.h	/^	MANDELBROT,$/;"	e	enum:s_type
+MANDELBAR	include/fractol.h	/^	MANDELBAR,$/;"	e	enum:s_type
+MANDELBROT	include/fractol.h	/^	MANDELBROT = 0,$/;"	e	enum:s_type
 MAX_EVENT	minilibx_macos/mlx_int.h	/^#define	MAX_EVENT	/;"	d
 MAX_PIXEL_NB	minilibx_macos/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
 MAX_ZOOM	include/key.h	/^# define MAX_ZOOM	/;"	d
@@ -77,9 +77,11 @@ OBJ	Makefile	/^OBJ := $(SRC:%.c=$(BUILD)\/%.o)$/;"	m
 OBJ	libft/Makefile	/^OBJ := $(SRC:%.c=$(BUILD)\/%.o)$/;"	m
 OBJ	minilibx_macos/Makefile	/^OBJ=$(OBJ1:.m=.o)$/;"	m
 OBJ1	minilibx_macos/Makefile	/^OBJ1=$(SRC:.c=.o)$/;"	m
+OCEAN	include/fractol.h	/^	OCEAN$/;"	e	enum:s_type
 OFFSET_STEP	include/key.h	/^# define OFFSET_STEP	/;"	d
 OFLAGS	Makefile	/^OFLAGS := -O2 -march=native$/;"	m
 OFLAGS	libft/Makefile	/^OFLAGS := -O2 -march=native$/;"	m
+PHOENIX	include/fractol.h	/^	PHOENIX,$/;"	e	enum:s_type
 PLUS	include/key.h	/^# define PLUS	/;"	d
 R	include/key.h	/^# define R	/;"	d
 RANLIB	Makefile	/^RANLIB := ranlib$/;"	m
@@ -92,6 +94,7 @@ RE_INCLUDE	libft/util/dumbsplit.py	/^RE_INCLUDE = re.compile(r'(?:^\\s*#\\s*incl
 RE_INDENTEDHEADER	libft/util/dumbsplit.py	/^RE_INDENTEDHEADER = re.compile(r'^\\s*#\\s+include', re.MULTILINE)$/;"	v
 RE_INDENTEDNAME	libft/util/dumbsplit.py	/^RE_INDENTEDNAME = re.compile(r'^(int\\t|[\\w ]+)\\t+')$/;"	v
 RE_STDHEADER	libft/util/dumbsplit.py	/^RE_STDHEADER = re.compile(r'(?:^\/\\*.{76}\\*\/\\n){11}\\n', re.MULTILINE)$/;"	v
+SATURATION	include/fractol.h	/^# define SATURATION	/;"	d
 SRC	Makefile	/^SRC := main.c errors.c fractal.c event.c mouse.c draw.c$/;"	m
 SRC	libft/Makefile	/^SRC := core\/ft_apply.c core\/ft_atoi.c core\/ft_bzero.c core\/ft_calloc.c core\/ft_foreach.c core\/ft_isalnum.c core\/ft_isalpha.c core\/ft_isascii.c core\/ft_isdigit.c core\/ft_islower.c core\/ft_isprint.c core\/ft_isspace.c core\/ft_isupper.c core\/ft_itoa.c core\/ft_lstadd.c core\/ft_lstdel.c core\/ft_lstdelone.c core\/ft_lstiter.c core\/ft_lstmap.c core\/ft_lstnew.c core\/ft_malloc.c core\/ft_map.c core\/ft_memalloc.c core\/ft_memccpy.c core\/ft_memchr.c core\/ft_memcmp.c core\/ft_memcpy.c core\/ft_memdel.c core\/ft_memdup.c core\/ft_memmove.c core\/ft_memset.c core\/ft_memswap.c core\/ft_putchar.c core\/ft_putchar_fd.c core\/ft_putendl.c core\/ft_putendl_fd.c core\/ft_putnbr.c core\/ft_putnbr_fd.c core\/ft_putstr.c core\/ft_putstr_fd.c core\/ft_qsort.c core\/ft_rand.c core\/ft_realloc.c core\/ft_strcat.c core\/ft_strchr.c core\/ft_strclr.c core\/ft_strcmp.c core\/ft_strcpy.c core\/ft_strdel.c core\/ft_strdup.c core\/ft_strelems.c core\/ft_strequ.c core\/ft_striter.c core\/ft_striteri.c core\/ft_strjmp.c core\/ft_strjoin.c core\/ft_strlcat.c core\/ft_strlen.c core\/ft_strmap.c core\/ft_strmapi.c core\/ft_strncat.c core\/ft_strncmp.c core\/ft_strncpy.c core\/ft_strnequ.c core\/ft_strnew.c core\/ft_strnstr.c core\/ft_strrchr.c core\/ft_strsplit.c core\/ft_strspn.c core\/ft_strstr.c core\/ft_strsub.c core\/ft_strtrim.c core\/ft_tolower.c core\/ft_toupper.c core\/ft_umax.c core\/ft_umin.c core\/get_next_line.c vec\/vec_append.c vec\/vec_apply.c vec\/vec_bsearch.c vec\/vec_clear.c vec\/vec_clone.c vec\/vec_copy.c vec\/vec_count.c vec\/vec_create.c vec\/vec_extend.c vec\/vec_filter.c vec\/vec_free.c vec\/vec_get.c vec\/vec_import.c vec\/vec_index.c vec\/vec_insert.c vec\/vec_map.c vec\/vec_pop.c vec\/vec_remove.c vec\/vec_resize.c vec\/vec_reverse.c vec\/vec_search.c vec\/vec_set.c vec\/vec_sort.c vec\/vectorize.c $/;"	m
 SRC	minilibx_macos/Makefile	/^SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c$/;"	m
@@ -99,6 +102,7 @@ THREADS	include/fractol.h	/^# define THREADS	/;"	d
 THREAD_FLAGS	Makefile	/^THREAD_FLAGS := -lpthread$/;"	m
 UNIQ_BPP	minilibx_macos/mlx_int.h	/^#define UNIQ_BPP	/;"	d
 USAGE	include/errors.h	/^# define USAGE	/;"	d
+VALUE	include/fractol.h	/^# define VALUE	/;"	d
 VEC_H	libft/include/vec.h	/^# define VEC_H$/;"	d
 WFLAGS	Makefile	/^WFLAGS := -Wall -Wextra$/;"	m
 WFLAGS	libft/Makefile	/^WFLAGS := -Wall -Wextra$/;"	m
@@ -114,6 +118,8 @@ close_hook	src/event.c	/^int		close_hook(t_fractal *fr, int keycode)$/;"	f
 col	minilibx_macos/mlx_xpm.c	/^  int           col;$/;"	m	struct:s_xpm_col	file:
 color	minilibx_macos/mlx_xpm.c	/^  int   color;$/;"	m	struct:s_col_name	file:
 color_bernstein	src/draw.c	/^int		color_bernstein(int iter, t_param *fr)$/;"	f
+color_grayscale	src/draw.c	/^int		color_grayscale(int iter, t_param *fr)$/;"	f
+color_hsv	src/draw.c	/^int		color_hsv(int iter, t_param *fr)$/;"	f
 content	libft/include/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content_size	libft/include/libft.h	/^	size_t			content_size;$/;"	m	struct:s_list
 ctor	libft/include/vec.h	/^	void	(*ctor)(void *, const void *);$/;"	m	struct:__anon2
@@ -304,8 +310,10 @@ next	minilibx_macos/mlx_int.h	/^  struct mlx_img_ctx_s	*next;$/;"	m	struct:mlx_i
 next	minilibx_macos/mlx_int.h	/^  struct mlx_img_list_s	*next;$/;"	m	struct:mlx_img_list_s	typeref:struct:mlx_img_list_s::mlx_img_list_s
 next	minilibx_macos/mlx_int.h	/^  struct mlx_win_list_s	*next;$/;"	m	struct:mlx_win_list_s	typeref:struct:mlx_win_list_s::mlx_win_list_s
 none	libft/include/vec.h	/^	t_obj	none;$/;"	m	struct:__anon2
+ocean	src/fractal.c	/^int		ocean(t_complex c, t_complex m, int max_iter)$/;"	f
 param	include/fractol.h	/^	t_param			param;$/;"	m	struct:s_fractal
 path	libft/util/dumbsplit.py	/^from os import path$/;"	i
+phoenix	src/fractal.c	/^int		phoenix(t_complex c, t_complex m, int max_iter)$/;"	f
 pixel_data	minilibx_macos/font.c	/^  unsigned char	 pixel_data[1140 * 20 * 4 + 1];$/;"	m	struct:__anon3	file:
 pixel_fshader	minilibx_macos/mlx_int.h	/^  GLuint	pixel_fshader;$/;"	m	struct:glsl_info_s
 pixel_program	minilibx_macos/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:glsl_info_s

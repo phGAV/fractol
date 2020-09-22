@@ -13,7 +13,9 @@
 #ifndef ERRORS_H
 # define ERRORS_H
 
-# define USAGE			"usage:\t ./fractol name\n\noptions: Mandelbrot\n\t Julia\n\t Something else"
+# define USAGE			"usage:\t ./fractol name\n\noptions: Mandelbrot\n\t" \
+						" Julia\n\t Burning ship\n\t Mandelbar\n\t" \
+						" Phoenix\n\t Ocean\n"
 # define MEMORY			"Memory allocation failed"
 # define ERR_THREADS	"Error creating threads"
 
