@@ -17,21 +17,10 @@
 
 # define KEYBOARD_MAX 127
 
-// # define ANGLE_STEP_ORTO	1.57
-// # define ANGLE_STEP			0.02
-
-// # define MAX_ZOOM			400
-// # define MIN_ZOOM			4
-
 # define ESC				0x35
 
-# define MOUSE_LEFT_BUTTON	1
-# define MOUSE_RIGHT_BUTTON	2
-# define MOUSE_THIRD_BUTTON	3
 # define MOUSE_SCROLL_UP	4
 # define MOUSE_SCROLL_DOWN	5
-# define MOUSE_SCROLL_LEFT	6
-# define MOUSE_SCROLL_RIGHT	7
 
 # define ARROW_UP			126
 # define ARROW_DOWN			125
@@ -41,17 +30,8 @@
 # define C					8
 # define R					15
 # define F					3
-# define H					4
-// # define KEY_0				29
-// # define KEY_1				18
-// # define KEY_2				19
-// # define KEY_3				20
-// # define KEY_4				21
-// # define KEY_5				23
-// # define KEY_6				22
-// # define KEY_7				26
-// # define KEY_8				28
-// # define KEY_9				25
+# define BR_R				30
+
 # define PLUS				24
 # define MINUS				27
 
@@ -63,9 +43,9 @@
 # define DESTROY_NOTIFY		17
 
 typedef void	(*t_shortcut)(t_fractal *, int);
+typedef int		(*t_colormap)(double);
 
 int		mouse_pressed(int button, int x, int y, t_fractal *fr);
-int		mouse_released(int button, int x, int y, t_fractal *fr);
 int		mouse_move(int x, int y, t_fractal *fr);
 
 int		close_hook(t_fractal *fr, int keycode);

@@ -31,18 +31,18 @@ static void		choose_type(char *name, t_fractal *fractal)
 }
 
 /*
- *	x_min	x_max	y_min	y_max	max_iter	julia_fixed	julia_param	func_ptr
+ *	x_min	x_max	y_min	y_max	dx dy max_iter	julia_fixed	julia_param	func_ptr
  */
 
 void			fractal_init(char *name, t_fractal *fractal)
 {
 	t_param			param[6] = {
-		{-2.5, 1.5, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbrot},
-		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &julia},
-		{-2.5, 1.5, -1.0, 2.0, EXIT_TIME, false, {0, 0}, &burning_ship},
-		{-2.2, 1.8, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbar},
-		{-1.33, 1.33, -0.7, 1.3, EXIT_TIME, false, {0, 0}, &phoenix},
-		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &ocean},
+		{-2.5, 1.5, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &mandelbrot},
+		{-2.0, 2.0, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &julia},
+		{-2.5, 1.5, -1.0, 2.0, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &burning_ship},
+		{-2.2, 1.8, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &mandelbar},
+		{-1.33, 1.33, -0.7, 1.3, 2.66, 2.0, EXIT_TIME, false, {0, 0}, &phoenix},
+		{-2.0, 2.0, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &ocean},
 	};
 
 	fractal->line_size = WIN_WIDTH;
@@ -52,15 +52,14 @@ void			fractal_init(char *name, t_fractal *fractal)
 	fractal->img_ptr = (int*)mlx_get_data_addr(fractal->image, &fractal->bpp,
 			&fractal->line_size, &fractal->endian);
 	fractal->param = param[fractal->name];
+	fractal->color = color_bernstein;
 }
 
 int				main(int argc, char **argv)
 {
 	t_fractal	fractal;
-	t_mouse		mouse;
 
 	ft_memset(&fractal, 0, sizeof(t_fractal));
-	fractal.mouse = ft_memset(&mouse, 0, sizeof(t_mouse));
 	if (argc != 2)
 		exit_err(USAGE);
 	choose_type(argv[1], &fractal);

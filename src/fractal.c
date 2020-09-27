@@ -129,7 +129,7 @@ int		phoenix(t_complex c, t_complex m, int max_iter)
 }
 
 int		ocean(t_complex c, t_complex m, int max_iter)
- {
+{
 	int			n;
 	t_complex	z;
 	t_complex	z_next;

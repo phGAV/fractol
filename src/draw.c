@@ -25,8 +25,8 @@ t_complex	get_complex(int x, int y, t_param *fr)
 	double		dx;
 	double		dy;
 
-	dx = (fr->x_max - fr->x_min) / WIN_WIDTH;
-	dy = (fr->y_max - fr->y_min) / WIN_HEIGHT;
+	dx = fr->dx / WIN_WIDTH;
+	dy = fr->dy / WIN_HEIGHT;
 	z.re = fr->x_min + x * dx;
 	z.im = fr->y_max - y * dy;
 	return (z);
@@ -58,7 +58,7 @@ int		color_grayscale(double t)
 
 int		color_hsv(double h)
 {
-	int		i;
+	int			i;
 	double		vm;
 	double		vi;
 	double		vd;
@@ -102,7 +102,7 @@ void	draw_thread(void *fractal)
 							fr->param.max_iter)) == fr->param.max_iter)
 				put_pixel(fr, x, y, BLACK);
 			else
-				put_pixel(fr, x, y, color_hsv((double)n/(double)fr->param.max_iter));
+				put_pixel(fr, x, y, fr->color((double)n/(double)fr->param.max_iter));
 			x++;
 		}
 		y++;

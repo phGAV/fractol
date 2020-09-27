@@ -12,15 +12,12 @@
 
 #include "fractol.h"
 #include "key.h"
-#include <stdio.h>
 
 int		close_hook(t_fractal *fr, int keycode)
 {
 	(void)keycode;
-	// mlx_destroy_image(fr->mlx, fr->menu);
 	mlx_destroy_image(fr->mlx, fr->image);
 	mlx_destroy_window(fr->mlx, fr->window);
-	printf("max iter= %d\n", fr->param.max_iter);
 	exit(EXIT_SUCCESS);
 }
 
@@ -76,15 +73,35 @@ void			reset(t_fractal *fr, int keycode)
 {
 	(void)keycode;
 	t_param			param[6] = {
-		{-2.5, 1.5, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbrot},
-		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &julia},
-		{-2.5, 1.5, -1.0, 2.0, EXIT_TIME, false, {0, 0}, &burning_ship},
-		{-2.2, 1.8, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbar},
-		{-1.33, 1.33, -0.7, 1.3, EXIT_TIME, false, {0, 0}, &phoenix},
-		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &ocean},
+		{-2.5, 1.5, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &mandelbrot},
+		{-2.0, 2.0, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &julia},
+		{-2.5, 1.5, -1.0, 2.0, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &burning_ship},
+		{-2.2, 1.8, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &mandelbar},
+		{-1.33, 1.33, -0.7, 1.3, 2.66, 2.0, EXIT_TIME, false, {0, 0}, &phoenix},
+		{-2.0, 2.0, -1.5, 1.5, 4.0, 3.0, EXIT_TIME, false, {0, 0}, &ocean},
 	};
 
 	fr->param = param[fr->name];
+}
+
+void	change_colors(t_fractal *fr, int keycode)
+{
+	static	int	n;
+	static t_colormap	g_colormap[3] = {
+		color_bernstein, color_grayscale, color_hsv,
+	};
+
+	(void)keycode;
+	n = n < 2 ? n + 1 : 0;
+	fr->color = g_colormap[n];
+}
+
+void	change_fractal(t_fractal *fr, int keycode)
+{
+	(void)keycode;
+
+	fr->name = fr->name < OCEAN ? fr->name + 1 : 0;
+	reset(fr, keycode);
 }
 
 int		key_hook(int keycode, t_fractal *fr)
@@ -97,9 +114,10 @@ int		key_hook(int keycode, t_fractal *fr)
 		[ARROW_RIGHT] = move_re,
 		[PLUS] = modify_iter,
 		[MINUS] = modify_iter,
-		// [C] = change_colors,
+		[C] = change_colors,
 		[F] = fix_julia,
 		[R] = reset,
+		[BR_R] = change_fractal,
 	};
 
 	if (keycode <= KEYBOARD_MAX && g_key[keycode])
@@ -115,6 +133,5 @@ void	events_control(t_fractal *fr)
 	mlx_hook(fr->window, DESTROY_NOTIFY, 0, close_hook, fr);
 	mlx_hook(fr->window, KEY_PRESS, 1, key_hook, fr);
 	mlx_hook(fr->window, BUTTON_PRESS, 1L << 2, mouse_pressed, fr);
-	mlx_hook(fr->window, BUTTON_RELEASE, 1L << 3, mouse_released, fr);
 	mlx_hook(fr->window, MOTION_NOTIFY, 1L << 8, mouse_move, fr);
 }
