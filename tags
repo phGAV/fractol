@@ -4,8 +4,6 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ANGLE_STEP	include/key.h	/^# define ANGLE_STEP	/;"	d
-ANGLE_STEP_ORTO	include/key.h	/^# define ANGLE_STEP_ORTO	/;"	d
 AR	Makefile	/^AR := ar$/;"	m
 AR	libft/Makefile	/^AR := ar$/;"	m
 ARROW_DOWN	include/key.h	/^# define ARROW_DOWN	/;"	d
@@ -54,10 +52,8 @@ MANDELBAR	include/fractol.h	/^	MANDELBAR,$/;"	e	enum:s_type
 MANDELBROT	include/fractol.h	/^	MANDELBROT = 0,$/;"	e	enum:s_type
 MAX_EVENT	minilibx_macos/mlx_int.h	/^#define	MAX_EVENT	/;"	d
 MAX_PIXEL_NB	minilibx_macos/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
-MAX_ZOOM	include/key.h	/^# define MAX_ZOOM	/;"	d
 MEMORY	include/errors.h	/^# define MEMORY	/;"	d
 MINUS	include/key.h	/^# define MINUS	/;"	d
-MIN_ZOOM	include/key.h	/^# define MIN_ZOOM	/;"	d
 MLX_DIR	Makefile	/^MLX_DIR := minilibx_macos$/;"	m
 MLX_FLAGS	Makefile	/^MLX_FLAGS := -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit$/;"	m
 MLX_H	minilibx_macos/mlx.h	/^#define	MLX_H$/;"	d
@@ -78,7 +74,6 @@ OBJ	libft/Makefile	/^OBJ := $(SRC:%.c=$(BUILD)\/%.o)$/;"	m
 OBJ	minilibx_macos/Makefile	/^OBJ=$(OBJ1:.m=.o)$/;"	m
 OBJ1	minilibx_macos/Makefile	/^OBJ1=$(SRC:.c=.o)$/;"	m
 OCEAN	include/fractol.h	/^	OCEAN$/;"	e	enum:s_type
-OFFSET_STEP	include/key.h	/^# define OFFSET_STEP	/;"	d
 OFLAGS	Makefile	/^OFLAGS := -O2 -march=native$/;"	m
 OFLAGS	libft/Makefile	/^OFLAGS := -O2 -march=native$/;"	m
 PHOENIX	include/fractol.h	/^	PHOENIX,$/;"	e	enum:s_type
@@ -117,9 +112,9 @@ choose_type	src/main.c	/^static void		choose_type(char *name, t_fractal *fractal
 close_hook	src/event.c	/^int		close_hook(t_fractal *fr, int keycode)$/;"	f
 col	minilibx_macos/mlx_xpm.c	/^  int           col;$/;"	m	struct:s_xpm_col	file:
 color	minilibx_macos/mlx_xpm.c	/^  int   color;$/;"	m	struct:s_col_name	file:
-color_bernstein	src/draw.c	/^int		color_bernstein(int iter, t_param *fr)$/;"	f
-color_grayscale	src/draw.c	/^int		color_grayscale(int iter, t_param *fr)$/;"	f
-color_hsv	src/draw.c	/^int		color_hsv(int iter, t_param *fr)$/;"	f
+color_bernstein	src/draw.c	/^int		color_bernstein(double t)$/;"	f
+color_grayscale	src/draw.c	/^int		color_grayscale(double t)$/;"	f
+color_hsv	src/draw.c	/^int		color_hsv(double h)$/;"	f
 content	libft/include/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content_size	libft/include/libft.h	/^	size_t			content_size;$/;"	m	struct:s_list
 ctor	libft/include/vec.h	/^	void	(*ctor)(void *, const void *);$/;"	m	struct:__anon2
@@ -132,6 +127,8 @@ endian	include/fractol.h	/^	int				endian;$/;"	m	struct:s_fractal
 events_control	src/event.c	/^void	events_control(t_fractal *fr)$/;"	f
 exit_err	src/errors.c	/^void	exit_err(char *err_msg)$/;"	f
 find_list	libft/src/core/get_next_line.c	/^t_list	*find_list(t_list **head, int fd)$/;"	f
+fix_julia	include/fractol.h	/^	bool		fix_julia;$/;"	m	struct:s_param
+fix_julia	src/event.c	/^void			fix_julia(t_fractal *fr, int keycode)$/;"	f
 font	minilibx_macos/mlx_int.h	/^  mlx_img_list_t	*font;$/;"	m	struct:mlx_ptr_s
 font_atlas	minilibx_macos/font.c	/^} font_atlas = {$/;"	v	typeref:struct:__anon3	file:
 font_fshader	minilibx_macos/mlx_int.h	/^  GLuint	font_fshader;$/;"	m	struct:glsl_info_s
@@ -241,7 +238,6 @@ img	minilibx_macos/mlx_int.h	/^  mlx_img_list_t	*img;$/;"	m	struct:mlx_img_ctx_s
 img_list	minilibx_macos/mlx_int.h	/^  mlx_img_ctx_t		*img_list;$/;"	m	struct:mlx_win_list_s
 img_list	minilibx_macos/mlx_int.h	/^  mlx_img_list_t	*img_list;$/;"	m	struct:mlx_ptr_s
 img_ptr	include/fractol.h	/^	int				*img_ptr;$/;"	m	struct:s_fractal
-interpolate	src/mouse.c	/^double interpolate(double start, double end, double interpolation)$/;"	f
 item_size	libft/include/vec.h	/^	size_t	item_size;$/;"	m	struct:__anon2
 julia	src/fractal.c	/^int		julia(t_complex c, t_complex m, int max_iter)$/;"	f
 key_hook	src/event.c	/^int		key_hook(int keycode, t_fractal *fr)$/;"	f
@@ -265,6 +261,7 @@ lomuto	libft/src/core/ft_qsort.c	/^static inline void	*lomuto(void *left, void *
 loop_hook	minilibx_macos/mlx_int.h	/^  void			(*loop_hook)(void *);$/;"	m	struct:mlx_ptr_s
 loop_hook_data	minilibx_macos/mlx_int.h	/^  void			*loop_hook_data;$/;"	m	struct:mlx_ptr_s
 loop_timer	minilibx_macos/mlx_int.h	/^  void			*loop_timer;$/;"	m	struct:mlx_ptr_s
+m	include/fractol.h	/^	t_complex	m;$/;"	m	struct:s_param
 main	src/main.c	/^int				main(int argc, char **argv)$/;"	f
 main_loop_active	minilibx_macos/mlx_int.h	/^  int			main_loop_active;$/;"	m	struct:mlx_ptr_s
 mandelbar	src/fractal.c	/^int		mandelbar(t_complex c, t_complex m, int max_iter)$/;"	f
@@ -297,10 +294,13 @@ mlx_win_list_s	minilibx_macos/mlx_int.h	/^typedef struct	mlx_win_list_s$/;"	s
 mlx_win_list_t	minilibx_macos/mlx_int.h	/^} mlx_win_list_t;$/;"	t	typeref:struct:mlx_win_list_s
 mlx_xpm_file_to_image	minilibx_macos/mlx_xpm.c	/^void	*mlx_xpm_file_to_image(mlx_ptr_t *xvar,char *file,int *width,int *height)$/;"	f
 mlx_xpm_to_image	minilibx_macos/mlx_xpm.c	/^void	*mlx_xpm_to_image(mlx_ptr_t *xvar,char **xpm_data,int *width,int *height)$/;"	f
+modify_iter	src/event.c	/^void		modify_iter(t_fractal *fr, int keycode)$/;"	f
 mouse	include/fractol.h	/^	t_mouse			*mouse;$/;"	m	struct:s_fractal
 mouse_move	src/mouse.c	/^int		mouse_move(int x, int y, t_fractal *fr)$/;"	f
 mouse_pressed	src/mouse.c	/^int		mouse_pressed(int button, int x, int y, t_fractal *fr)$/;"	f
 mouse_released	src/mouse.c	/^int		mouse_released(int button, int x, int y, t_fractal *fr)$/;"	f
+move_im	src/event.c	/^void		move_im(t_fractal *fr, int keycode)$/;"	f
+move_re	src/event.c	/^void		move_re(t_fractal *fr, int keycode)$/;"	f
 name	include/fractol.h	/^	t_type			name;$/;"	m	struct:s_fractal
 name	minilibx_macos/mlx_xpm.c	/^  char  *name;$/;"	m	struct:s_col_name	file:
 name	minilibx_macos/mlx_xpm.c	/^  int           name;$/;"	m	struct:s_xpm_col	file:
@@ -323,6 +323,7 @@ put_pixel	src/draw.c	/^static void		put_pixel(t_fractal *fr, int x, int y, int c
 quick_sort	libft/src/core/ft_qsort.c	/^static void			quick_sort(void *left, void *right, size_t size,$/;"	f	file:
 re	include/fractol.h	/^	double			re;$/;"	m	struct:s_complex
 re	libft/util/dumbsplit.py	/^import re$/;"	i
+reset	src/event.c	/^void			reset(t_fractal *fr, int keycode)$/;"	f
 s_col_name	minilibx_macos/mlx_xpm.c	/^struct  s_col_name$/;"	s	file:
 s_complex	include/fractol.h	/^typedef struct		s_complex {$/;"	s
 s_fractal	include/fractol.h	/^typedef struct		s_fractal {$/;"	s
@@ -383,4 +384,4 @@ x_min	include/fractol.h	/^	double		x_min;$/;"	m	struct:s_param
 y	include/fractol.h	/^	int				y;$/;"	m	struct:__anon1
 y_max	include/fractol.h	/^	double		y_max;$/;"	m	struct:s_param
 y_min	include/fractol.h	/^	double		y_min;$/;"	m	struct:s_param
-zoom	src/mouse.c	/^void	zoom(t_param *param, double x, double y, double factor)$/;"	f
+zoom	src/mouse.c	/^void	zoom(t_param *p, int x, int y, double factor)$/;"	f

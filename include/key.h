@@ -17,12 +17,11 @@
 
 # define KEYBOARD_MAX 127
 
-# define OFFSET_STEP		10
-# define ANGLE_STEP_ORTO	1.57
-# define ANGLE_STEP			0.02
+// # define ANGLE_STEP_ORTO	1.57
+// # define ANGLE_STEP			0.02
 
-# define MAX_ZOOM			400
-# define MIN_ZOOM			4
+// # define MAX_ZOOM			400
+// # define MIN_ZOOM			4
 
 # define ESC				0x35
 

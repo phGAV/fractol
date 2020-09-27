@@ -12,6 +12,7 @@
 
 #include "fractol.h"
 #include "key.h"
+#include <stdio.h>
 
 int		close_hook(t_fractal *fr, int keycode)
 {
@@ -19,42 +20,93 @@ int		close_hook(t_fractal *fr, int keycode)
 	// mlx_destroy_image(fr->mlx, fr->menu);
 	mlx_destroy_image(fr->mlx, fr->image);
 	mlx_destroy_window(fr->mlx, fr->window);
+	printf("max iter= %d\n", fr->param.max_iter);
 	exit(EXIT_SUCCESS);
 }
 
-// int		move_up(t_fractal *fr, int keycode)
-// {
+void		move_im(t_fractal *fr, int keycode)
+{
+	double	step;
 
-// }
+	step = (fr->param.y_max - fr->param.y_min)/30.0;
+	if (keycode == ARROW_DOWN)
+	{
+		fr->param.y_max += step;
+		fr->param.y_min += step;
+	}
+	else
+	{
+		fr->param.y_max -= step;
+		fr->param.y_min -= step;
+	}
+}
 
-// int		move_side(t_fractal *fr, int keycode)
-// {
+void		move_re(t_fractal *fr, int keycode)
+{
+	double	step;
 
-// }
+	step = (fr->param.x_max - fr->param.x_min)/30.0;
+	if (keycode == ARROW_LEFT)
+	{
+		fr->param.x_max += step;
+		fr->param.x_min += step;
+	}
+	else
+	{
+		fr->param.x_max -= step;
+		fr->param.x_min -= step;
+	}
+}
 
-// int		modify_iter(t_fractal *fr, int keycode)
-// {
-// 	if ()
-// 	else
-// }
+void		modify_iter(t_fractal *fr, int keycode)
+{
+	if (keycode == PLUS)
+		fr->param.max_iter += 10;
+	else if (fr->param.max_iter > 1)
+		fr->param.max_iter -= 10;
+}
+
+void			fix_julia(t_fractal *fr, int keycode)
+{
+	(void)keycode;
+	fr->param.fix_julia = !fr->param.fix_julia;
+}
+
+void			reset(t_fractal *fr, int keycode)
+{
+	(void)keycode;
+	t_param			param[6] = {
+		{-2.5, 1.5, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbrot},
+		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &julia},
+		{-2.5, 1.5, -1.0, 2.0, EXIT_TIME, false, {0, 0}, &burning_ship},
+		{-2.2, 1.8, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbar},
+		{-1.33, 1.33, -0.7, 1.3, EXIT_TIME, false, {0, 0}, &phoenix},
+		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &ocean},
+	};
+
+	fr->param = param[fr->name];
+}
 
 int		key_hook(int keycode, t_fractal *fr)
 {
 	static const t_shortcut	g_key[KEYBOARD_MAX] = {
 		[ESC] = (t_shortcut)close_hook,
-		// [ARROW_UP] = move_up,
-		// [ARROW_DOWN] = move_up,
-		// [ARROW_LEFT] = move_side,
-		// [ARROW_RIGHT] = move_side,
-		// [PLUS] = modify_iter,
-		// [MINUS] = modify_iter,
+		[ARROW_UP] = move_im,
+		[ARROW_DOWN] = move_im,
+		[ARROW_LEFT] = move_re,
+		[ARROW_RIGHT] = move_re,
+		[PLUS] = modify_iter,
+		[MINUS] = modify_iter,
 		// [C] = change_colors,
-		// [F] = fix_julia,
-		// [R] = reset,
+		[F] = fix_julia,
+		[R] = reset,
 	};
 
 	if (keycode <= KEYBOARD_MAX && g_key[keycode])
+	{
 		(*g_key[keycode])(fr, keycode);
+		thread_init(fr);
+	}
 	return (0);
 }
 

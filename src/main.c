@@ -31,18 +31,18 @@ static void		choose_type(char *name, t_fractal *fractal)
 }
 
 /*
- *	x_min	x_max	y_min	y_max	max_iter	func_ptr
+ *	x_min	x_max	y_min	y_max	max_iter	julia_fixed	julia_param	func_ptr
  */
 
 void			fractal_init(char *name, t_fractal *fractal)
 {
 	t_param			param[6] = {
-		{-2.5, 1.0, -1.5, 1.5, EXIT_TIME, &mandelbrot},
-		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &julia},
-		{-2.0, 1.5, -1.0, 2.0, EXIT_TIME, &burning_ship},
-		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &mandelbar},
-		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &phoenix},
-		{-1.75, 1.75, -1.5, 1.5, EXIT_TIME, &ocean},
+		{-2.5, 1.5, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbrot},
+		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &julia},
+		{-2.5, 1.5, -1.0, 2.0, EXIT_TIME, false, {0, 0}, &burning_ship},
+		{-2.2, 1.8, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &mandelbar},
+		{-1.33, 1.33, -0.7, 1.3, EXIT_TIME, false, {0, 0}, &phoenix},
+		{-2.0, 2.0, -1.5, 1.5, EXIT_TIME, false, {0, 0}, &ocean},
 	};
 
 	fractal->line_size = WIN_WIDTH;

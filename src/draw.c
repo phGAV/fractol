@@ -32,46 +32,42 @@ t_complex	get_complex(int x, int y, t_param *fr)
 	return (z);
 }
 
-int		color_bernstein(int iter, t_param *fr)
+int		color_bernstein(double t)
 {
-	double	t;
 	int		r;
 	int		g;
 	int		b;
 
-	t = (double)iter/(double)fr->max_iter;
 	r = (int)(9.0 * (1 - t) * t * t * t * 255.0);
 	g = (int)(15.0 * (1 - t) * (1 - t) * t * t * 255.0);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255.0);
 	return ((r << 0x10) | (g << 0x8) | b);
 }
 
-int		color_grayscale(int iter, t_param *fr)
+int		color_grayscale(double t)
 {
-	double	t;
 	int		r;
 	int		g;
 	int		b;
 
-	t = (double)iter/(double)fr->max_iter;
 	r = (int)((1 - t)*0.0 + t*255.0);
 	g = (int)((1 - t)*0.0 + t*255.0);
 	b = (int)((1 - t)*0.0 + t*255.0);
 	return ((r << 0x10) | (g << 0x8) | b);
 }
 
-int		color_hsv(int iter, t_param *fr)
+int		color_hsv(double h)
 {
-	double		h;
 	int		i;
-	double		vm, a, vi, vd;
+	double		vm;
+	double		vi;
+	double		vd;
 
-	h = (360.0*(double)iter/(double)fr->max_iter);
+	h *= 360.0;
 	i = ((int)h/60)%6;
 	vm = ((100 - SATURATION) * VALUE)/100;
-	a = (VALUE - vm) * (fmod(h, 60)/60);
-	vi = vm + a;
-	vd = VALUE - a;
+	vi = vm + (VALUE - vm) * (fmod(h, 60)/60);
+	vd = VALUE - (VALUE - vm) * (fmod(h, 60)/60);
 	if (i < 1)
 		return (((int)(VALUE*2.55) << 0x10) | ((int)(vi*2.55) << 0x8) | (int)(vm*2.55));
 	if (i < 2)
@@ -102,13 +98,11 @@ void	draw_thread(void *fractal)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			if ((n = fr->param.func(get_complex(x, y, &fr->param),
-							get_complex(fr->mouse->x, fr->mouse->y, &fr->param),
+			if ((n = fr->param.func(get_complex(x, y, &fr->param), fr->param.m,
 							fr->param.max_iter)) == fr->param.max_iter)
 				put_pixel(fr, x, y, BLACK);
 			else
-				// put_pixel(fr, x, y, color_bernstein(n, &fr->param));
-				put_pixel(fr, x, y, color_hsv(n, &fr->param));
+				put_pixel(fr, x, y, color_hsv((double)n/(double)fr->param.max_iter));
 			x++;
 		}
 		y++;
