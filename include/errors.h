@@ -13,10 +13,8 @@
 #ifndef ERRORS_H
 # define ERRORS_H
 
-# define USAGE			"usage:\t ./fractol name\n\noptions: Mandelbrot\n\t" \
-						" Julia\n\t Burning ship\n\t Mandelbar\n\t" \
-						" Phoenix\n\t Ocean\n"
-# define MEMORY			"Memory allocation failed"
-# define ERR_THREADS	"Error creating threads"
+# define USAGE			0
+# define MEMORY			1
+# define ERR_THREADS	2
 
 #endif

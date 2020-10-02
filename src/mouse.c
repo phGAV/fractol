@@ -24,10 +24,10 @@ void	zoom(t_param *p, int x, int y, double factor)
 	m = get_complex(x, y, p);
 	dx = p->dx * (1 - 1 / factor);
 	dy = p->dy * (1 - 1 / factor);
-	px = (m.re - p->x_min)/p->dx;
-	py = (m.im - p->y_min)/p->dy;
-	p->x_min += dx*px;
-	p->y_min += dy*py;
+	px = (m.re - p->x_min) / p->dx;
+	py = (m.im - p->y_min) / p->dy;
+	p->x_min += dx * px;
+	p->y_min += dy * py;
 	p->dx -= dx;
 	p->dy -= dy;
 	p->x_max = p->dx + p->x_min;

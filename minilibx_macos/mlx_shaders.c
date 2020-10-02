@@ -1,11 +1,11 @@
 //  mlx_shaders.c
 
+#define GL_SILENCE_DEPRECATION
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <OpenGL/gl3.h>
 #include "mlx_int.h"
-
 
 void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())
 {
@@ -18,7 +18,6 @@ void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())
   fprintf(stderr, "%s", log);
   free(log);
 }
-
 
 int mlx_shaders_pixel(glsl_info_t *glsl)
 {
@@ -83,7 +82,6 @@ int mlx_shaders_pixel(glsl_info_t *glsl)
 
   return (0);
 }
-
 
 int mlx_shaders_image(glsl_info_t *glsl)
 {
@@ -153,9 +151,6 @@ int mlx_shaders_image(glsl_info_t *glsl)
 
   return (0);
 }
-
-
-
 
 int mlx_shaders_font(glsl_info_t *glsl)
 {
@@ -227,8 +222,6 @@ int mlx_shaders_font(glsl_info_t *glsl)
 
   return (0);
 }
-
-
 
 int mlx_shaders(glsl_info_t *glsl)
 {

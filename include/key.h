@@ -15,7 +15,7 @@
 
 # include "fractol.h"
 
-# define KEYBOARD_MAX 127
+# define KEYBOARD_MAX		127
 
 # define ESC				0x35
 
@@ -30,7 +30,7 @@
 # define C					8
 # define R					15
 # define F					3
-# define BR_R				30
+# define RETURN				36
 
 # define PLUS				24
 # define MINUS				27
@@ -45,9 +45,14 @@
 typedef void	(*t_shortcut)(t_fractal *, int);
 typedef int		(*t_colormap)(double);
 
-int		mouse_pressed(int button, int x, int y, t_fractal *fr);
-int		mouse_move(int x, int y, t_fractal *fr);
+int				mouse_pressed(int button, int x, int y, t_fractal *fr);
+int				mouse_move(int x, int y, t_fractal *fr);
 
-int		close_hook(t_fractal *fr, int keycode);
+int				close_hook(t_fractal *fr, int keycode);
+void			move_im(t_fractal *fr, int keycode);
+void			move_re(t_fractal *fr, int keycode);
+void			modify_iter(t_fractal *fr, int keycode);
+void			fix_julia(t_fractal *fr, int keycode);
+void			change_colors(t_fractal *fr, int keycode);
 
 #endif
