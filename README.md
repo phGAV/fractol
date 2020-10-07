@@ -15,4 +15,4 @@ Options: `Mandelbrot`, `Julia`, `Burning ship`, `Mandelbar`, `Phoenix`, `Ocean`
 					
 Controls: `[r]` – reset, `[c]` – color change, 
 `[+/-]` – change iteration number, `[return]` – next fractal, 
-`[F]` – fix Julia parameter, `move` with arrows, `zoom` with mouse
+`[F]` – fix Julia parameter, move with `arrows`, zoom with `mouse`
